@@ -3,7 +3,7 @@ dotenv.config()
 
 const apiKey = process.env.WEATHER_API_KEY;
 
-interface WeatherResponse {
+export interface WeatherResponse {
   coord: {
     lon: number,
     lat: number
@@ -50,7 +50,7 @@ interface WeatherResponse {
 
                         
 
-const weatherApi = async (city: string): Promise<WeatherResponse | null> => {
+export const weatherApi = async (city: string): Promise<WeatherResponse | null> => {
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
     try{
