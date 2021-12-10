@@ -2,6 +2,8 @@
 
 This app is based on an old project I worked on in college. The project I worked on in college was not very good and full of flaws and bad code so I created this project to try and see if I could do better after having a bit more experience with react
 
+[This is the api I use.](https://openweathermap.org/api) Create a .env file with an api key from the website as per the .env.example file
+
 ## Available Scripts
 
 In the project directory, you can run:
