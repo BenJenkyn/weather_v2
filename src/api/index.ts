@@ -49,10 +49,17 @@ export interface WeatherResponse {
 
 export const weatherApi = async (
   city: string
-): Promise<WeatherResponse | null> => {
+): Promise<WeatherResponse | string | null> => {
   const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
   const weatherResponse = await fetch(url);
-  const weatherData = await weatherResponse.json();
-  return weatherData;
+
+  if (weatherResponse.ok) {
+    const weatherData = await weatherResponse.json();
+    return weatherData;
+  }
+  if (weatherResponse.status >= 500) {
+    return "Issue with the server. Please try again later";
+  }
+  return "Invalid city name";
 };
