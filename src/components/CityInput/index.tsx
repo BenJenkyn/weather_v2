@@ -10,7 +10,7 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  Text
+  Text,
 } from "@chakra-ui/react";
 
 const fetchWeatherData = async (city: string) => {
@@ -23,9 +23,9 @@ const fetchWeatherData = async (city: string) => {
 const CityInput = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [weatherData, setWeatherData] = useState<WeatherResponse>();
-  const [city, setCity] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>()
-  const [isInvalid, setIsInvalid] = useState<boolean>(false)
+  const [city, setCity] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>();
+  const [isInvalid, setIsInvalid] = useState<boolean>(false);
 
   const handleChange = (e: any) => {
     setCity(e.target.value);
@@ -37,12 +37,12 @@ const CityInput = () => {
     setIsLoading(true);
     fetchWeatherData(city)
       .then((res) => {
-        if(typeof res === 'string'){
-          setErrorMessage(res)
-          setIsInvalid(true)
+        if (typeof res === "string") {
+          setErrorMessage(res);
+          setIsInvalid(true);
         } else {
           setWeatherData(res);
-          setIsInvalid(false)
+          setIsInvalid(false);
         }
       })
       .catch((err) => {
@@ -75,9 +75,13 @@ const CityInput = () => {
             />
             <FormErrorMessage>{errorMessage}</FormErrorMessage>
           </FormControl>
-          <Button type='submit'>Submit</Button>
+          <Button type="submit">Submit</Button>
         </form>
-        <Text>{weatherData && weatherData.weather ? weatherData.weather[0].icon : ''}</Text>
+        <Text>
+          {weatherData && weatherData.weather
+            ? weatherData.weather[0].icon
+            : ""}
+        </Text>
       </Container>
     </Stack>
   );
