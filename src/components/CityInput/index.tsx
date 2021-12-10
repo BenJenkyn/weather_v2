@@ -79,7 +79,7 @@ const CityInput = () => {
         </form>
         <Text>
           {weatherData && weatherData.weather
-            ? weatherData.weather[0].icon
+            ? 'Temperature: ' + (weatherData.main.temp - 273.15).toFixed(2)
             : ""}
         </Text>
       </Container>
