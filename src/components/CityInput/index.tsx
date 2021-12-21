@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { weatherApi, WeatherResponse } from "../../api";
 import {
   Button,
@@ -79,7 +79,8 @@ const CityInput = () => {
         </form>
         <Text>
           {weatherData && weatherData.weather
-            ? weatherData.weather[0].icon
+            ? `The weather is: ${(weatherData.main.temp - 273.15).toFixed(1)} Celcius 
+            and ${(((weatherData.main.temp - 273.15) * (9/5)) + 32).toFixed(1)} Farenheit in ${city}`
             : ""}
         </Text>
       </Container>
