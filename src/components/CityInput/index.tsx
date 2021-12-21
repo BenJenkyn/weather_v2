@@ -14,7 +14,9 @@ import {
 
 interface Props {
   weatherData?: WeatherResponse;
-  setWeatherData: React.Dispatch<React.SetStateAction<WeatherResponse | undefined>>;
+  setWeatherData: React.Dispatch<
+    React.SetStateAction<WeatherResponse | undefined>
+  >;
 }
 
 const fetchWeatherData = async (city: string) => {
@@ -25,7 +27,7 @@ const fetchWeatherData = async (city: string) => {
 };
 
 const CityInput = (props: Props) => {
-  const {weatherData, setWeatherData} = props;
+  const { weatherData, setWeatherData } = props;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [city, setCity] = useState<string>("");
@@ -83,7 +85,12 @@ const CityInput = (props: Props) => {
       </form>
       <Text>
         {weatherData && weatherData.weather
-          ? "Temperature: " + (weatherData.main.temp - 273.15).toFixed(2)
+          ? `The weather is: ${(weatherData.main.temp - 273.15).toFixed(
+              1
+            )} Celcius 
+            and ${((weatherData.main.temp - 273.15) * (9 / 5) + 32).toFixed(
+              1
+            )} Farenheit in ${city}`
           : ""}
       </Text>
     </Container>
