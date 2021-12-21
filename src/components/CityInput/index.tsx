@@ -9,6 +9,7 @@ import {
   FormLabel,
   FormErrorMessage,
   Text,
+  Flex,
 } from "@chakra-ui/react";
 
 import { weatherApi, WeatherResponse } from "../../api";
@@ -80,6 +81,7 @@ const CityInput = (props: Props) => {
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isInvalid}>
           <FormLabel>City</FormLabel>
+          <Flex>
           <Input
             type="text"
             value={city}
@@ -87,11 +89,12 @@ const CityInput = (props: Props) => {
             className="city-input"
             placeholder="e.g. Toronto"
           />
-          <FormErrorMessage>{errorMessage}</FormErrorMessage>
           <Button type="submit">Submit</Button>
+          </Flex>
+          <FormErrorMessage>{errorMessage}</FormErrorMessage>
         </FormControl>
       </form>
-      <Text fontSize="40">
+      <Text fontSize="55">
         {weatherData && weatherData.name && weatherData.sys
           ? `${weatherData.name}, ${weatherData.sys.country}`
           : ""}
