@@ -26,6 +26,17 @@ const fetchWeatherData = async (city: string) => {
   }
 };
 
+const toCelcius = (tempKalvin: number): number => {
+  const celcius = tempKalvin - 273.15;
+  return celcius;
+};
+
+const toFarenheit = (tempKalvin: number): number => {
+  const celcius = toCelcius(tempKalvin);
+  const farenheit = celcius * (9 / 5) + 32;
+  return farenheit;
+};
+
 const CityInput = (props: Props) => {
   const { weatherData, setWeatherData } = props;
 
@@ -85,10 +96,10 @@ const CityInput = (props: Props) => {
       </form>
       <Text>
         {weatherData && weatherData.weather
-          ? `The weather is: ${(weatherData.main.temp - 273.15).toFixed(
+          ? `The weather is: ${toCelcius(weatherData.main.temp).toFixed(
               1
             )} Celcius 
-            and ${((weatherData.main.temp - 273.15) * (9 / 5) + 32).toFixed(
+            and ${toFarenheit(weatherData.main.temp).toFixed(
               1
             )} Farenheit in ${city}`
           : ""}
