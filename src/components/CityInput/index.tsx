@@ -88,13 +88,13 @@ const CityInput = (props: Props) => {
             placeholder="e.g. Toronto"
           />
           <FormErrorMessage>{errorMessage}</FormErrorMessage>
+          <Button type="submit">Submit</Button>
         </FormControl>
-        <Button type="submit">Submit</Button>
       </form>
-      <Text>
+      <Text fontSize="40">
         {weatherData && weatherData.name && weatherData.sys
           ? `${weatherData.name}, ${weatherData.sys.country}`
-          : ''}
+          : ""}
       </Text>
     </Box>
   );
