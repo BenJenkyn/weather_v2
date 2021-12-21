@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { weatherApi, WeatherResponse } from "../../api";
 import {
   Button,
   Center,
-  Container,
+  Box,
   Input,
   Spinner,
   FormControl,
@@ -11,6 +10,8 @@ import {
   FormErrorMessage,
   Text,
 } from "@chakra-ui/react";
+
+import { weatherApi, WeatherResponse } from "../../api";
 
 interface Props {
   weatherData?: WeatherResponse;
@@ -24,17 +25,6 @@ const fetchWeatherData = async (city: string) => {
   if (weather) {
     return weather;
   }
-};
-
-const toCelcius = (tempKalvin: number): number => {
-  const celcius = tempKalvin - 273.15;
-  return celcius;
-};
-
-const toFarenheit = (tempKalvin: number): number => {
-  const celcius = toCelcius(tempKalvin);
-  const farenheit = celcius * (9 / 5) + 32;
-  return farenheit;
 };
 
 const CityInput = (props: Props) => {
@@ -79,7 +69,14 @@ const CityInput = (props: Props) => {
   }
 
   return (
-    <Container border="gray" borderStyle="solid" borderRadius="15" padding="3">
+    <Box
+      maxWidth="1000px"
+      height="200px"
+      padding="10px"
+      borderColor="red"
+      borderWidth="2px"
+      borderRadius="15px"
+    >
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isInvalid}>
           <FormLabel>City</FormLabel>
@@ -95,16 +92,11 @@ const CityInput = (props: Props) => {
         <Button type="submit">Submit</Button>
       </form>
       <Text>
-        {weatherData && weatherData.weather
-          ? `The weather is: ${toCelcius(weatherData.main.temp).toFixed(
-              1
-            )} Celcius 
-            and ${toFarenheit(weatherData.main.temp).toFixed(
-              1
-            )} Farenheit in ${city}`
-          : ""}
+        {weatherData && weatherData.name && weatherData.sys
+          ? `${weatherData.name}, ${weatherData.sys.country}`
+          : ''}
       </Text>
-    </Container>
+    </Box>
   );
 };
 

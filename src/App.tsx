@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { HStack } from "@chakra-ui/react";
+import { Container, Flex, Grid } from "@chakra-ui/react";
 import CityInput from "./components/CityInput";
-import TemperatureDisplay from "./components/CityInput/TemperatureDisplay";
+import TemperatureDisplay from "./components/TemperatureDisplay";
 import { WeatherResponse } from "./api";
 
 function App() {
@@ -9,10 +9,17 @@ function App() {
 
   return (
     <div className="App">
-      <HStack>
-        <CityInput weatherData={weatherData} setWeatherData={setWeatherData} />
-        <TemperatureDisplay weatherData={weatherData} />
-      </HStack>
+      <Container maxWidth="container.lg" padding="10px">
+        <Flex flexDir="column" gridGap="10px">
+          <CityInput
+            weatherData={weatherData}
+            setWeatherData={setWeatherData}
+          />
+          <Grid columnGap="50px" rowGap="10px">
+            <TemperatureDisplay weatherData={weatherData} />
+          </Grid>
+        </Flex>
+      </Container>
     </div>
   );
 }
