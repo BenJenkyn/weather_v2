@@ -42,7 +42,7 @@ const TemperatureDisplay = (props: Props) => {
               ? `${getTemperature(weatherData?.main.temp_max).toFixed(1)}`
               : '--'}
           </Text>
-          <Text>{weatherData ? weatherData?.weather[0].main : ''}</Text>
+          <Text>{weatherData ? weatherData?.weather[0].main : '--'}</Text>
         </Box>
       </Flex>
     </GridItem>
