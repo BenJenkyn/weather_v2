@@ -17,6 +17,7 @@ const TemperatureDisplay = (props: Props) => {
       borderColor="red"
       borderWidth="2px"
       borderRadius="15px"
+      colSpan={2}
     >
       <Flex>
         <Box flex="1">

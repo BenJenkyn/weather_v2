@@ -10,6 +10,7 @@ import {
   FormErrorMessage,
   Text,
   Flex,
+  GridItem,
 } from "@chakra-ui/react";
 
 import { weatherApi, WeatherResponse } from "../../api";
@@ -70,13 +71,14 @@ const CityInput = (props: Props) => {
   }
 
   return (
-    <Box
+    <GridItem
       maxWidth="1000px"
       height="200px"
       padding="10px"
       borderColor="red"
       borderWidth="2px"
       borderRadius="15px"
+      colSpan={4}
     >
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isInvalid}>
@@ -99,7 +101,7 @@ const CityInput = (props: Props) => {
           ? `${weatherData.name}, ${weatherData.sys.country}`
           : ""}
       </Text>
-    </Box>
+    </GridItem>
   );
 };
 
