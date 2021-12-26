@@ -6,7 +6,6 @@ import { WeatherResponse, getWeatherImgUrl } from '../../api';
 
 interface DetailedWeatherProps {
 	weatherData?: WeatherResponse;
-	children?: any;
 }
 
 const DetailedWeather = (props: DetailedWeatherProps) => {
