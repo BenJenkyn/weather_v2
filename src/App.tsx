@@ -4,6 +4,7 @@ import { Container, Grid, Box } from '@chakra-ui/react';
 import CityInput from './components/CityInput';
 import TemperatureDisplay from './components/TemperatureDisplay';
 import DetailedWeather from './components/DetailedWeather';
+import FeelsLike from './components/FeelsLike';
 import { WeatherResponse } from './api';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 					/>
 					<TemperatureDisplay weatherData={weatherData} />
 					<DetailedWeather weatherData={weatherData} />
+          <FeelsLike weatherData={weatherData} />
 				</Grid>
 			</Container>
 		</div>
