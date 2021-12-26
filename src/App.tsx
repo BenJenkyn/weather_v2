@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Grid, Box } from '@chakra-ui/react';
+import { Container, Grid } from '@chakra-ui/react';
 
 import CityInput from './components/CityInput';
 import TemperatureDisplay from './components/TemperatureDisplay';

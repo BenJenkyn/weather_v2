@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Flex, Box } from '@chakra-ui/react';
+import { Text, Flex } from '@chakra-ui/react';
 
 import WeatherInfoBox from '../../lib/WeatherInfoBox';
 import { getTemperature } from '../../lib/tempConversions';
