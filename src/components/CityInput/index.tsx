@@ -13,12 +13,15 @@ import {
 } from '@chakra-ui/react';
 
 import { weatherApi, WeatherResponse } from '../../api';
+import { measurementUnit } from '../../lib/tempConversions';
 
 interface Props {
   weatherData?: WeatherResponse;
   setWeatherData: React.Dispatch<
     React.SetStateAction<WeatherResponse | undefined>
   >;
+  setTempType: React.Dispatch<React.SetStateAction<measurementUnit>>;
+  tempType: measurementUnit;
 }
 
 const fetchWeatherData = async (city: string) => {
@@ -29,7 +32,7 @@ const fetchWeatherData = async (city: string) => {
 };
 
 const CityInput = (props: Props) => {
-  const { weatherData, setWeatherData } = props;
+  const { weatherData, setWeatherData, tempType, setTempType } = props;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [city, setCity] = useState<string>('');
@@ -61,6 +64,14 @@ const CityInput = (props: Props) => {
     setIsLoading(false);
   };
 
+  const changeTempType = () => {
+    if (tempType === 'celcius') {
+      setTempType('farenheit');
+    } else if (tempType === 'farenheit') {
+      setTempType('celcius');
+    }
+  };
+
   if (isLoading) {
     return (
       <Center>
@@ -90,20 +101,39 @@ const CityInput = (props: Props) => {
               placeholder="e.g. Toronto"
               borderColor="#829ab1"
             />
-            <Button _hover={{
-				backgroundColor: '#829ab1'
-			}} backgroundColor="#334e68" textColor="white" type="submit">
+            <Button
+              _hover={{
+                backgroundColor: '#829ab1',
+              }}
+              backgroundColor="#334e68"
+              textColor="white"
+              type="submit"
+            >
               Submit
             </Button>
           </Flex>
           <FormErrorMessage>{errorMessage}</FormErrorMessage>
         </FormControl>
       </form>
-      <Text fontSize="55">
-        {weatherData && weatherData.name && weatherData.sys
-          ? `${weatherData.name}, ${weatherData.sys.country}`
-          : ''}
-      </Text>
+      <Flex flexDir="row">
+        <Text fontSize="55" flex={2}>
+          {weatherData && weatherData.name && weatherData.sys
+            ? `${weatherData.name}, ${weatherData.sys.country}`
+            : ''}
+        </Text>
+        <Button
+          _hover={{
+            backgroundColor: '#829ab1',
+          }}
+          backgroundColor="#334e68"
+          textColor="white"
+          type="submit"
+          justifyContent="flex-end"
+          onClick={changeTempType}
+        >
+          Switch to {tempType === 'celcius' ? '°F' : '°C'}
+        </Button>
+      </Flex>
     </GridItem>
   );
 };

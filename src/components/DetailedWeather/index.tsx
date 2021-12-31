@@ -3,12 +3,9 @@ import { Image, Text, Flex, Box } from '@chakra-ui/react';
 
 import WeatherInfoBox from '../../lib/WeatherInfoBox';
 import { WeatherResponse, getWeatherImgUrl } from '../../api';
+import { WeatherBoxProps } from '../../lib/WeatherInfoBoxProps';
 
-interface DetailedWeatherProps {
-	weatherData?: WeatherResponse;
-}
-
-const DetailedWeather = (props: DetailedWeatherProps) => {
+const DetailedWeather = (props: WeatherBoxProps) => {
 	const { weatherData } = props;
 	return (
 		<WeatherInfoBox>

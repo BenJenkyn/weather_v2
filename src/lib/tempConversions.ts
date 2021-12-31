@@ -1,4 +1,4 @@
-type measurementUnit = 'celcius' | 'farenheit';
+export type measurementUnit = 'celcius' | 'farenheit';
 
 export const toCelcius = (tempKalvin: number): number => {
     const celcius = tempKalvin - 273.15;
