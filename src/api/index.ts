@@ -50,7 +50,7 @@ export interface WeatherResponse {
 export const weatherApi = async (
 	city: string
 ): Promise<WeatherResponse | string | null> => {
-	const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+	const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
 	const weatherResponse = await fetch(url);
 
