@@ -11,6 +11,7 @@ const WeatherInfoBox = (props: WeatherInfoBoxProps) => {
 	return (
 		<GridItem
 			maxWidth={isDouble ? ['450px', '1000px'] : ['1000px', '1000px', '200px']}
+			minWidth='200px'
 			height='200px'
 			padding='10px'
 			borderRadius='15px'
