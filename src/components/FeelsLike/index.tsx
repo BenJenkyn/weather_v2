@@ -14,8 +14,8 @@ const FeelsLike = (props: FeelsLikeProps) => {
 	return (
 		<WeatherInfoBox>
 			<Flex flexDirection='column' alignItems='center'>
-				<Text flex='2' fontSize='64'>
-					{weatherData ? `${getTemperature(weatherData.main.feels_like).toFixed(1)}°C` : '--'}
+				<Text flex='2' fontSize='80'>
+					{weatherData ? `${getTemperature(weatherData.main.feels_like).toFixed(1)}°` : '--'}
 				</Text>
 				<Text flex='1' fontSize={24}>
 					Feels Like

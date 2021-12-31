@@ -10,12 +10,12 @@ const WeatherInfoBox = (props: WeatherInfoBoxProps) => {
 	const { isDouble } = props;
 	return (
 		<GridItem
-			maxWidth={isDouble ? '450px' : '200px'}
+			maxWidth={isDouble ? ['450px', '1000px'] : ['1000px', '1000px', '200px']}
 			height='200px'
 			padding='10px'
 			borderRadius='15px'
-			colSpan={isDouble ? 2 : 1}
-			backgroundColor='#A0ACEC'
+			colSpan={isDouble ? [4, 4, 2] : [4, 4, 1]}
+			backgroundColor='#486581'
 		>
 			{props.children}
 		</GridItem>

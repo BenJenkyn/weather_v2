@@ -15,7 +15,7 @@ const TemperatureDisplay = (props: Props) => {
 		<WeatherInfoBox isDouble>
 			<Flex>
 				<Box flex='1'>
-					<Text fontSize='100' textAlign='center'>
+					<Text fontSize='90' textAlign='center'>
 						{weatherData
 							? `${getTemperature(weatherData?.main.temp).toFixed(1)}`
 							: '--'}
@@ -24,7 +24,7 @@ const TemperatureDisplay = (props: Props) => {
 						&deg;C
 					</Text>
 				</Box>
-				<Box flex='1' fontSize='24' margin='auto' textColor='#4a4a4a'>
+				<Box flex='1' fontSize='24' margin='auto'>
 					<Text>
 						Low:{' '}
 						{weatherData
