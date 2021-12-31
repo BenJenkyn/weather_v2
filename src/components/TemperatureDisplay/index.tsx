@@ -2,7 +2,6 @@ import React from 'react';
 import { Flex, Text, Box } from '@chakra-ui/react';
 
 import WeatherInfoBox from '../../lib/WeatherInfoBox';
-import { WeatherResponse } from '../../api';
 import { getTemperature } from '../../lib/tempConversions';
 import { WeatherBoxProps } from '../../lib/WeatherInfoBoxProps';
 

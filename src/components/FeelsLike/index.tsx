@@ -3,7 +3,6 @@ import { Text, Flex } from '@chakra-ui/react';
 
 import WeatherInfoBox from '../../lib/WeatherInfoBox';
 import { getTemperature } from '../../lib/tempConversions';
-import { WeatherResponse } from '../../api';
 import { WeatherBoxProps } from '../../lib/WeatherInfoBoxProps';
 
 const FeelsLike = (props: WeatherBoxProps) => {
