@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const apiKey = 'fbaa3d68a5a1505f1469d317c664dcac' //process.env.REACT_APP_WEATHER_API_KEY;
+const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
 export interface WeatherResponse {
 	coord: {
