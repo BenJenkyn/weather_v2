@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/app.css"],"names":[],"mappings":"AAAA,KACI,wBAAyB,CACzB,YAAa,CACb,aACJ","file":"main.c5574575.chunk.css","sourcesContent":[".App{\r\n    background-color: #627d98;\r\n    height: 100vh;\r\n    color: #f0f4f8;\r\n}"]}
