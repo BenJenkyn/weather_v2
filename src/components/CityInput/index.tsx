@@ -115,25 +115,23 @@ const CityInput = (props: Props) => {
           <FormErrorMessage>{errorMessage}</FormErrorMessage>
         </FormControl>
       </form>
-      <Flex flexDir="row">
-        <Text fontSize="55" flex={2}>
-          {weatherData && weatherData.name && weatherData.sys
-            ? `${weatherData.name}, ${weatherData.sys.country}`
-            : ''}
-        </Text>
-        <Button
-          _hover={{
-            backgroundColor: '#829ab1',
-          }}
-          backgroundColor="#334e68"
-          textColor="white"
-          type="submit"
-          justifyContent="flex-end"
-          onClick={changeTempType}
-        >
-          Switch to {tempType === 'celcius' ? '°F' : '°C'}
-        </Button>
-      </Flex>
+      <Button
+        _hover={{
+          backgroundColor: '#829ab1',
+        }}
+        backgroundColor="#334e68"
+        textColor="white"
+        type="submit"
+        justifyContent="flex-end"
+        onClick={changeTempType}
+      >
+        Switch to {tempType === 'celcius' ? '°F' : '°C'}
+      </Button>
+      <Text fontSize="55">
+        {weatherData && weatherData.name && weatherData.sys
+          ? `${weatherData.name}, ${weatherData.sys.country}`
+          : ''}
+      </Text>
     </GridItem>
   );
 };
