@@ -93,6 +93,18 @@ const CityInput = (props: Props) => {
         <FormControl isInvalid={isInvalid}>
           <FormLabel>City</FormLabel>
           <Flex>
+            <Button
+              _hover={{
+                backgroundColor: '#829ab1',
+              }}
+              backgroundColor="#334e68"
+              textColor="white"
+              textAlign="center"
+              onClick={changeTempType}
+              type="button"
+            >
+              {tempType === 'celcius' ? '°F' : '°C'}
+            </Button>
             <Input
               type="text"
               value={city}
@@ -115,18 +127,6 @@ const CityInput = (props: Props) => {
           <FormErrorMessage>{errorMessage}</FormErrorMessage>
         </FormControl>
       </form>
-      <Button
-        _hover={{
-          backgroundColor: '#829ab1',
-        }}
-        backgroundColor="#334e68"
-        textColor="white"
-        type="submit"
-        justifyContent="flex-end"
-        onClick={changeTempType}
-      >
-        Switch to {tempType === 'celcius' ? '°F' : '°C'}
-      </Button>
       <Text fontSize="55">
         {weatherData && weatherData.name && weatherData.sys
           ? `${weatherData.name}, ${weatherData.sys.country}`
