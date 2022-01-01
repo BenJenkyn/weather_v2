@@ -4,6 +4,8 @@ This app is based on an old project I worked on in college. The old project was 
 
 [This is the api I use.](https://openweathermap.org/api) Create a .env file with an api key from the website as per the .env.example file
 
+[Here is a link to the website](https://benjenkyn.github.io/weather_v2/)
+
 ## Available Scripts
 
 In the project directory, you can run:
