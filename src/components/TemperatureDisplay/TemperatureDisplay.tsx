@@ -1,18 +1,21 @@
 import React from 'react';
 import { Flex, Text, Box } from '@chakra-ui/react';
 
+import { useAppSelector } from '../../redux/hooks';
 import WeatherInfoBox from '../../lib/WeatherInfoBox';
 import { getTemperature } from '../../lib/tempConversions';
 import { WeatherBoxProps } from '../../lib/WeatherInfoBoxProps';
 
 const TemperatureDisplay = (props: WeatherBoxProps) => {
-	const { weatherData, tempType } = props;
+	const { tempType } = props;
+	const weatherData = useAppSelector((state) => state.weather.weatherData);
+
 	return (
 		<WeatherInfoBox isDouble>
 			<Flex>
 				<Box flex="1">
 					<Text fontSize="90" textAlign="center">
-						{weatherData
+						{weatherData && 'main' in weatherData
 							? `${getTemperature(weatherData?.main.temp, tempType).toFixed(1)}`
 							: '--'}
 					</Text>
@@ -23,7 +26,7 @@ const TemperatureDisplay = (props: WeatherBoxProps) => {
 				<Box flex="1" fontSize="24" margin="auto">
 					<Text>
 						Low:{' '}
-						{weatherData
+						{weatherData && 'main' in weatherData
 							? `${getTemperature(weatherData?.main.temp_min, tempType).toFixed(
 									1
 							  )}°`
@@ -31,13 +34,17 @@ const TemperatureDisplay = (props: WeatherBoxProps) => {
 					</Text>
 					<Text>
 						High:{' '}
-						{weatherData
+						{weatherData && 'main' in weatherData
 							? `${getTemperature(weatherData?.main.temp_max, tempType).toFixed(
 									1
 							  )}°`
 							: '--'}
 					</Text>
-					<Text>{weatherData ? weatherData?.weather[0].main : '--'}</Text>
+					<Text>
+						{weatherData && 'main' in weatherData
+							? weatherData?.weather[0].main
+							: '--'}
+					</Text>
 				</Box>
 			</Flex>
 		</WeatherInfoBox>

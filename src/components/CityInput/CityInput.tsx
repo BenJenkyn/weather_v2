@@ -11,57 +11,42 @@ import {
 	Flex,
 	GridItem,
 } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import _ from 'lodash';
 
-import { weatherApi, WeatherResponse } from '../../api';
+import { WeatherResponse } from '../../api';
 import { measurementUnit } from '../../lib/tempConversions';
+import { setCity, getWeatherData } from '../../redux/weatherSlice';
+import { useAppSelector } from '../../redux/hooks';
 
 interface Props {
-	weatherData?: WeatherResponse;
-	setWeatherData: React.Dispatch<
-		React.SetStateAction<WeatherResponse | undefined>
-	>;
 	setTempType: React.Dispatch<React.SetStateAction<measurementUnit>>;
 	tempType: measurementUnit;
 }
 
-const fetchWeatherData = async (city: string) => {
-	const weather = await weatherApi(city);
-	if (weather) {
-		return weather;
-	}
-};
-
 const CityInput = (props: Props) => {
-	const { weatherData, setWeatherData, tempType, setTempType } = props;
+	const { tempType, setTempType } = props;
 
-	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [city, setCity] = useState<string>('');
-	const [errorMessage, setErrorMessage] = useState<string>();
-	const [isInvalid, setIsInvalid] = useState<boolean>(false);
+	const dispatch = useDispatch();
 
-	const handleChange = (e: any) => {
-		setCity(e.target.value);
+	const weatherData = useAppSelector((state) => state.weather.weatherData);
+	const isLoading = useAppSelector((state) => state.weather.isLoading);
+	const errorMessage = useAppSelector((state) => state.weather.errorMessage);
+
+	const [cityLocal, setCityLocal] = useState<string>();
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		setCityLocal(value);
 	};
 
-	const handleSubmit = (e: any) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
-		setIsLoading(true);
-		fetchWeatherData(city)
-			.then((res) => {
-				if (typeof res === 'string') {
-					setErrorMessage(res);
-					setIsInvalid(true);
-				} else {
-					setWeatherData(res);
-					setIsInvalid(false);
-				}
-			})
-			.catch((err) => {
-				console.error('trouble fetcing api', err);
-			});
-
-		setIsLoading(false);
+		console.log(cityLocal);
+		dispatch(setCity(cityLocal));
+		if (cityLocal) {
+			dispatch(getWeatherData(cityLocal));
+		}
 	};
 
 	const changeTempType = () => {
@@ -89,8 +74,8 @@ const CityInput = (props: Props) => {
 			borderRadius="15px"
 			colSpan={4}
 		>
-			<form onSubmit={handleSubmit}>
-				<FormControl isInvalid={isInvalid}>
+			<form onSubmit={(e) => handleSubmit(e)}>
+				<FormControl isInvalid={!_.isEmpty(errorMessage)}>
 					<FormLabel>City</FormLabel>
 					<Flex>
 						<Button
@@ -106,9 +91,8 @@ const CityInput = (props: Props) => {
 							{tempType === 'celcius' ? '°F' : '°C'}
 						</Button>
 						<Input
-							type="text"
-							value={city}
 							onChange={handleChange}
+							type="text"
 							className="city-input"
 							placeholder="e.g. Toronto"
 							borderColor="#829ab1"
@@ -128,7 +112,7 @@ const CityInput = (props: Props) => {
 				</FormControl>
 			</form>
 			<Text fontSize="55">
-				{weatherData && weatherData.name && weatherData.sys
+				{weatherData && 'name' in weatherData && weatherData.sys
 					? `${weatherData.name}, ${weatherData.sys.country}`
 					: ''}
 			</Text>

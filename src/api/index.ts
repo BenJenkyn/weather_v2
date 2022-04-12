@@ -47,21 +47,21 @@ export interface WeatherResponse {
 	cod: number;
 }
 
-export const weatherApi = async (
-	city: string
-): Promise<WeatherResponse | string | null> => {
-	const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+export const weatherApi = async (city: string): Promise<WeatherResponse> => {
+	try {
+		const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
-	const weatherResponse = await fetch(url);
+		const weatherResponse = await fetch(url);
 
-	if (weatherResponse.ok) {
-		const weatherData = await weatherResponse.json();
-		return weatherData;
+		if (weatherResponse.ok) {
+			const weatherData = await weatherResponse.json();
+			return weatherData;
+		}
+		throw new Error(weatherResponse.statusText);
+	} catch (e) {
+		console.error(e);
+		throw e;
 	}
-	if (weatherResponse.status >= 500) {
-		return 'Issue with the server. Please try again later';
-	}
-	return 'Invalid city name';
 };
 
 export const getWeatherImgUrl = (iconId: string): string => {

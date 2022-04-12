@@ -10,7 +10,6 @@ import { measurementUnit } from './lib/tempConversions';
 import './app.css';
 
 function App() {
-  const [weatherData, setWeatherData] = useState<WeatherResponse>();
   const [tempType, setTempType] = useState<measurementUnit>('celcius');
 
   return (
@@ -22,21 +21,16 @@ function App() {
           templateColumns="repeat(4, 1fr)"
         >
           <CityInput
-            weatherData={weatherData}
-            setWeatherData={setWeatherData}
             setTempType={setTempType}
             tempType={tempType}
           />
           <TemperatureDisplay
-            weatherData={weatherData}
             tempType={tempType}
           />
           <DetailedWeather
-            weatherData={weatherData}
             tempType={tempType}
           />
           <FeelsLike
-            weatherData={weatherData}
             tempType={tempType}
           />
         </Grid>

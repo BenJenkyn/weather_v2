@@ -4,14 +4,17 @@ import { Text, Flex } from '@chakra-ui/react';
 import WeatherInfoBox from '../../lib/WeatherInfoBox';
 import { getTemperature } from '../../lib/tempConversions';
 import { WeatherBoxProps } from '../../lib/WeatherInfoBoxProps';
+import { useAppSelector } from '../../redux/hooks';
 
 const FeelsLike = (props: WeatherBoxProps) => {
-	const { weatherData, tempType } = props;
+	const { tempType } = props;
+	const weatherData = useAppSelector((state) => state.weather.weatherData);
+
 	return (
 		<WeatherInfoBox>
 			<Flex flexDirection="column" alignItems="center">
 				<Text flex="2" fontSize="80">
-					{weatherData
+					{weatherData && 'main' in weatherData
 						? `${getTemperature(weatherData.main.feels_like, tempType).toFixed(
 								1
 						  )}°`
