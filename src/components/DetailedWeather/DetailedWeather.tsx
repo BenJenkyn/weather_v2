@@ -1,13 +1,11 @@
 import React from 'react';
 import { Image, Text, Flex, Box } from '@chakra-ui/react';
-import _ from 'lodash';
 
 import { useAppSelector } from '../../redux/hooks';
 import WeatherInfoBox from '../../lib/WeatherInfoBox';
 import { getWeatherImgUrl } from '../../api';
-import { WeatherBoxProps } from '../../lib/WeatherInfoBoxProps';
 
-const DetailedWeather = (props: WeatherBoxProps) => {
+const DetailedWeather = () => {
 	const weatherData = useAppSelector((state) => state.weather.weatherData);
 
 	return (

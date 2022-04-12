@@ -4,11 +4,10 @@ import { Flex, Text, Box } from '@chakra-ui/react';
 import { useAppSelector } from '../../redux/hooks';
 import WeatherInfoBox from '../../lib/WeatherInfoBox';
 import { getTemperature } from '../../lib/tempConversions';
-import { WeatherBoxProps } from '../../lib/WeatherInfoBoxProps';
 
-const TemperatureDisplay = (props: WeatherBoxProps) => {
-	const { tempType } = props;
+const TemperatureDisplay = () => {
 	const weatherData = useAppSelector((state) => state.weather.weatherData);
+	const tempType = useAppSelector((state) => state.temperature.temperatureType);
 
 	return (
 		<WeatherInfoBox isDouble>

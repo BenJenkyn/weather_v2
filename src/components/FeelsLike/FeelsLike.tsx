@@ -3,12 +3,11 @@ import { Text, Flex } from '@chakra-ui/react';
 
 import WeatherInfoBox from '../../lib/WeatherInfoBox';
 import { getTemperature } from '../../lib/tempConversions';
-import { WeatherBoxProps } from '../../lib/WeatherInfoBoxProps';
 import { useAppSelector } from '../../redux/hooks';
 
-const FeelsLike = (props: WeatherBoxProps) => {
-	const { tempType } = props;
+const FeelsLike = () => {
 	const weatherData = useAppSelector((state) => state.weather.weatherData);
+	const tempType = useAppSelector((state) => state.temperature.temperatureType);
 
 	return (
 		<WeatherInfoBox>

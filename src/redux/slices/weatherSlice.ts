@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { weatherApi, WeatherResponse } from '../api';
+import { weatherApi, WeatherResponse } from '../../api';
 
 type WeatherState = WeatherResponse | {};
 

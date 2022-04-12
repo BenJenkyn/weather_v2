@@ -14,24 +14,18 @@ import {
 import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 
-import { WeatherResponse } from '../../api';
-import { measurementUnit } from '../../lib/tempConversions';
-import { setCity, getWeatherData } from '../../redux/weatherSlice';
+import { setCity, getWeatherData } from '../../redux/slices/weatherSlice';
+import { setTemperatureType } from '../../redux/slices/temperatureSlice';
 import { useAppSelector } from '../../redux/hooks';
+import { measurementUnit } from '../../lib/tempConversions';
 
-interface Props {
-	setTempType: React.Dispatch<React.SetStateAction<measurementUnit>>;
-	tempType: measurementUnit;
-}
-
-const CityInput = (props: Props) => {
-	const { tempType, setTempType } = props;
-
+const CityInput = () => {
 	const dispatch = useDispatch();
 
 	const weatherData = useAppSelector((state) => state.weather.weatherData);
 	const isLoading = useAppSelector((state) => state.weather.isLoading);
 	const errorMessage = useAppSelector((state) => state.weather.errorMessage);
+	const tempType = useAppSelector((state) => state.temperature.temperatureType);
 
 	const [cityLocal, setCityLocal] = useState<string>();
 
@@ -50,10 +44,10 @@ const CityInput = (props: Props) => {
 	};
 
 	const changeTempType = () => {
-		if (tempType === 'celcius') {
-			setTempType('farenheit');
-		} else if (tempType === 'farenheit') {
-			setTempType('celcius');
+		if (tempType === measurementUnit.celcius) {
+			dispatch(setTemperatureType(measurementUnit.farenheit));
+		} else if (tempType === measurementUnit.farenheit) {
+			dispatch(setTemperatureType(measurementUnit.celcius));
 		}
 	};
 
@@ -88,7 +82,7 @@ const CityInput = (props: Props) => {
 							onClick={changeTempType}
 							type="button"
 						>
-							{tempType === 'celcius' ? '°F' : '°C'}
+							{tempType === measurementUnit.celcius ? '°F' : '°C'}
 						</Button>
 						<Input
 							onChange={handleChange}
