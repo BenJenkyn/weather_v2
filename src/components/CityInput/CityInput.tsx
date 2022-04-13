@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import {
 	Button,
-	Center,
 	Input,
-	Spinner,
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
@@ -23,7 +21,6 @@ const CityInput = () => {
 	const dispatch = useDispatch();
 
 	const weatherData = useAppSelector((state) => state.weather.weatherData);
-	const isLoading = useAppSelector((state) => state.weather.isLoading);
 	const errorMessage = useAppSelector((state) => state.weather.errorMessage);
 	const tempType = useAppSelector((state) => state.temperature.temperatureType);
 
@@ -50,14 +47,6 @@ const CityInput = () => {
 			dispatch(setTemperatureType(measurementUnit.celcius));
 		}
 	};
-
-	if (isLoading) {
-		return (
-			<Center>
-				<Spinner />
-			</Center>
-		);
-	}
 
 	return (
 		<GridItem

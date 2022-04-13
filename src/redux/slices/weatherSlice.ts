@@ -3,13 +3,15 @@ import { weatherApi, WeatherResponse } from '../../api';
 
 type WeatherState = WeatherResponse | {};
 
-// Defining state
-const initialState: {
+interface State {
 	weatherData: WeatherState;
 	isLoading: boolean;
 	city: string;
 	errorMessage: string;
-} = {
+}
+
+// Defining state
+const initialState: State = {
 	weatherData: {},
 	isLoading: false,
 	city: '',
@@ -45,7 +47,7 @@ export const weatherSlice = createSlice({
 			})
 			.addCase(getWeatherData.fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.weatherData = action.payload as WeatherState;
+				state.weatherData = action.payload;
 				console.log('success');
 			})
 			.addCase(getWeatherData.rejected, (state) => {
