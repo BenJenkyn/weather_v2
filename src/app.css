@@ -1,5 +1,6 @@
-.App{
-    background-color: #627d98;
-    height: 100vh;
-    color: #f0f4f8;
+html{
+	background-color: #627d98;
+}
+.App {
+	background-color: #627d98;
 }
